@@ -11,13 +11,17 @@ on: #definicja triggera (moe być na pusha, pull request, )
 jobs: # kazdy job to OSOBNY docker
   install_and_run_tests: #to się pojawia w sekcji Actions jako nazwa
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [ 14, 16, 18, 20 ]
+    name: Node ${{ matrix.node }} sample
     steps:
     - name: Git clone # akcja git clone
       uses: actions/checkout@v3
     - name: Setup Node.js 18 # kolejna akcja - instalacja node 18
       uses: actions/setup-node@v3 # w github actions nie trzeba brac obrazu node, on sam to ogarnia, w innych CI - trzeba pobrac obraz
       with:
-        node-version: 18
+          node-version: ${{ matrix.node }}
     - name: Run unit tests
       run: |
         npm install
