@@ -18,7 +18,7 @@ jobs: # kazdy job to OSOBNY docker
     steps:
     - name: Git clone # akcja git clone
       uses: actions/checkout@v3
-    - name: Setup Node.js 18 # kolejna akcja - instalacja node 18
+    - name: Setup Node.js ${{ matrix.node }} # kolejna akcja - instalacja node 18
       uses: actions/setup-node@v3 # w github actions nie trzeba brac obrazu node, on sam to ogarnia, w innych CI - trzeba pobrac obraz
       with:
           node-version: ${{ matrix.node }}
