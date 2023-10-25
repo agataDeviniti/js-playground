@@ -9,7 +9,7 @@ on: #definicja triggera (moe być na pusha, pull request, )
       - master # jak wykonamy pull request do master
 
 jobs: # kazdy job to OSOBNY docker
-  install: #to się pojawia w sekcji Actions jako nazwa
+  install_and_run_tests: #to się pojawia w sekcji Actions jako nazwa
     runs-on: ubuntu-latest
     steps:
     - name: Git clone # akcja git clone
@@ -24,12 +24,6 @@ jobs: # kazdy job to OSOBNY docker
       with:
         name: node_modules
         path: node_modules
-    - name: Git clone
-      uses: actions/checkout@v3
-    - name: Setup Node.js 18
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18
     - uses: actions/download-artifact@v3
       with:
         name: node_modules
